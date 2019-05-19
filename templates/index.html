@@ -101,7 +101,18 @@ function submitMudPlan()
         };
     })
 
+    dataArray = dataArray.filter((item)=>{
+        return item["FormationName"] != null && 
+               item["MinWeight"] != null && 
+               item["MaxWeight"] != null && 
+               item["Caudal"] != null && 
+               item["MDTope"] != null && 
+               item["MDBase"] != null
+
+    })
+
     dataArrayJSON = JSON.stringify(dataArray);
+    console.log(dataArrayJSON)
 
     $("#tableJSON").val(dataArrayJSON);
     

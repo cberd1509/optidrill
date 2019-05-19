@@ -3,4 +3,116 @@
 {% load static %}
 
 {% block contenido %}
+
+<div class="row my-3">
+    <div class="col-md-12">
+        <h1 class="text-primary">Subida de plan de lodos</h1>
+        <p class="text-secondary">A continuación, por favor ingrese la información referente al plan de lodos. Incluyendo la información de la prognosis geológica, MD esperado, TVD Esperado y los parámetros operacionales definidos para la operación.</p>
+        <hr>
+    </div>
+
+    <div class="col-md-12">
+            <button class="mb-4 btn btn-secondary w-100" onclick="loadTestData()" type="button">Cargar data de Prueba</button>
+        <div id="mainDiv">
+
+        </div>
+
+        <form action="{% url 'analyzeGeoProg' %}" id="geoProgForm" method="post"> {% csrf_token %}
+
+        <input type="hidden" name="tableJSON" id="tableJSON">
+        <button class="mt-4 btn btn-primary w-100" onclick="submitMudPlan()" type="button">Analizar</button>
+
+        </form>
+
+    </div>
+</div>
+
+
+
+<script>
+
+var formationArray = [
+    "Formacion 1",
+    "Formacion 10",
+    "Formacion 11",
+    "Formacion 12",
+    "Formacion 13",
+    "Formacion 14",
+    "Formacion 15",
+    "Formacion 16",
+    "Formacion 2",
+    "Formacion 3",
+    "Formacion 4",
+    "Formacion 5",
+    "Formacion 6",
+    "Formacion 7",
+    "Formacion 8",
+    "Formacion 9"
+];
+
+var defaultData = [{"FormationName":"Formacion 1","MinWeight":"8.4","MaxWeight":"8.8","Caudal":"322","MDTope":"0","MDBase":"280"},{"FormationName":"Formacion 2","MinWeight":"8.5","MaxWeight":"8.9","Caudal":"421","MDTope":"280","MDBase":"712"},{"FormationName":"Formacion 3","MinWeight":"10.3","MaxWeight":"10.45","Caudal":"387","MDTope":"712","MDBase":"1000"},{"FormationName":"Formacion 4","MinWeight":"9.22","MaxWeight":"9.87","Caudal":"318","MDTope":"1000","MDBase":"1752"},{"FormationName":"Formacion 5","MinWeight":"8.45","MaxWeight":"8.87","Caudal":"390","MDTope":"1752","MDBase":"3300"},{"FormationName":"Formacion 6","MinWeight":"10.11","MaxWeight":"10.8","Caudal":"511","MDTope":"3300","MDBase":"5100"},{"FormationName":"Formacion 7","MinWeight":"8.45","MaxWeight":"8.88","Caudal":"480","MDTope":"5100","MDBase":"6023"},{"FormationName":"Formacion 8","MinWeight":"9.35","MaxWeight":"9.98","Caudal":"387","MDTope":"6023","MDBase":"6725"},{"FormationName":"Formacion 9","MinWeight":"8.78","MaxWeight":"9.32","Caudal":"437","MDTope":"6725","MDBase":"7521"},{"FormationName":"Formacion 10","MinWeight":"11.12","MaxWeight":"12.15","Caudal":"683","MDTope":"7521","MDBase":"8102"},{"FormationName":"Formacion 12","MinWeight":"10","MaxWeight":"10.81","Caudal":"724","MDTope":"8102","MDBase":"10250"},{"FormationName":"Formacion 13","MinWeight":"9.15","MaxWeight":"9.75","Caudal":"573","MDTope":"10250","MDBase":"11220"},{"FormationName":"Formacion 14","MinWeight":"10.18","MaxWeight":"10.77","Caudal":"397","MDTope":"11220","MDBase":"12150"}]
+
+
+var hotElement = document.querySelector('#mainDiv');
+var hotSettings = {
+    licenseKey: 'non-commercial-and-evaluation',
+    columns: [
+        {
+            data: 'FormationName',
+            type: 'dropdown',
+            source: formationArray,
+            width: 300,
+        },
+        { data:'MinWeight', width:200},
+        { data:'MaxWeight', width:200},
+        { data:'Caudal', width:100},
+        { data:'MDTope', width:100},
+        { data:'MDBase', width:100}
+    ],
+    minSpareRows:1,
+    startRows:2,
+    rowHeaders: true,
+    colHeaders: [
+        'Formación',
+        'Peso Lodo Min',
+        'Peso Lodo Max',
+        'Caudal',
+        'MD Tope',
+        'MD Base'
+    ],
+    stretchH: 'all',
+
+
+}
+var hot = new Handsontable(hotElement, hotSettings);
+
+function submitMudPlan()
+{
+    var dataArray = hot.getData();
+
+    dataArray = dataArray.map((item)=>{
+        return {
+            "FormationName":item[0],
+            "MinWeight":item[1],
+            "MaxWeight":item[2],
+            "Caudal":item[3],
+            "MDTope":item[4],
+            "MDBase":item[5],
+        };
+    })
+
+    dataArrayJSON = JSON.stringify(dataArray);
+
+    $("#tableJSON").val(dataArrayJSON);
+    
+    $("#geoProgForm").submit();
+    
+}
+
+function loadTestData()
+{
+    hot.loadData(defaultData);
+}
+</script>
+
 {% endblock %}

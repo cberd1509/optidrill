@@ -9,3 +9,6 @@ import io
 
 def home(request):
     return render(request, 'index.html')
+
+def analyzeGeoProg(request):
+    return "Done"

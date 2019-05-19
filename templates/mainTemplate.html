@@ -9,6 +9,9 @@
             <!-- CSS -->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css">
+
+            
             <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 
@@ -19,6 +22,7 @@
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
             <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
+            <script src="{% static 'js/handsontable.full.min.js' %}"></script>
 
 
     </head>
@@ -49,7 +53,7 @@
             </nav>
         </div>
 
-        <div class="container-fluid" id="optidrill_presentation">
+        <div class="container" id="optidrill_presentation">
             {% block contenido %} <!-- Cuerpo de la página --> {%endblock%}
         </div>
 

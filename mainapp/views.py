@@ -70,7 +70,7 @@ def analyzeGeoProg(request):
 
             print(stuck)
 
-            stuckDict = dict(FormationName=Formation, StuckRate=stuck)
+            stuckDict = [Formation, str(round(stuck[0][0]*100,2))]
             stuckProb.append(stuckDict)
 
 

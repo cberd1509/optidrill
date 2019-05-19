@@ -1,1 +1,47 @@
-<pre> {% filter force_escape %} {% debug %} {% endfilter %} </pre>
+{% extends "mainTemplate.html" %}
+
+{% load static %}
+
+{% block contenido %}
+
+
+<div class="row my-3">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+
+<h1 class="text-primary text-center">
+Resultados del Análisis
+</h1>
+
+<p class="text-secondary text-justify">
+A continuación podrá encontrar los resultados del algoritmo de probabilidad de pega basado en la información ingresada.
+</p>
+
+<hr class="my-3">
+
+        <table class="table table-bordered">
+            <thead class="bg-primary text-white text-center">
+                <th>Nombre de la Formación</th>
+                <th>Probabilidad de Pega</th>
+            </thead>
+            <tbody class="text-center">
+
+                {% for key, values in stuckProb %}
+                <tr>
+                    <td>{{key}}</td>
+                    <td>{{values}} %</td>
+                </tr>
+                {% endfor %}
+
+
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="col-md-3"></div>
+</div>
+
+
+
+{% endblock %}

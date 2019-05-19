@@ -15,6 +15,10 @@ python_version = "3.6"
 "psycopg2-binary" = "*"
 django-heroku = "*"
 gunicorn = "*"
+keras = "*"
+tensorflow = "*"
+scikit-learn = "*"
+numpy = "*"
 
 
 [dev-packages]

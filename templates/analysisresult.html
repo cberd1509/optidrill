@@ -29,7 +29,7 @@ A continuación podrá encontrar los resultados del algoritmo de probabilidad de
                 {% for key, values in stuckProb %}
                 <tr>
                     <td>{{key}}</td>
-                    <td>{{values}} %</td>
+                    <td data-value="{{values}}" class="stuckChance">{{values}} %</td>
                 </tr>
                 {% endfor %}
 
@@ -42,6 +42,32 @@ A continuación podrá encontrar los resultados del algoritmo de probabilidad de
     <div class="col-md-3"></div>
 </div>
 
+
+<script>
+
+$(document).ready(function(){
+
+    items = document.getElementsByClassName("stuckChance");
+
+    for(var i = 0; i < items.length; i++)
+    {
+        var value = $(items[i]).attr('data-value')
+        
+        if(value>50)
+        {
+            $(items[i]).toggleClass('table-danger');
+        }
+        else
+        {
+            $(items[i]).toggleClass('table-success');
+        }
+    }
+
+
+})
+
+
+</script>
 
 
 {% endblock %}

@@ -6,6 +6,10 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <title>OptiDrill</title>
 
+
+            <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+
+            
             <!-- CSS -->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
@@ -45,7 +49,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                   <div class="navbar-nav mx-auto">
-                    <a class="nav-item nav-link active" href="#">Inicio</a>
+                    <a class="nav-item nav-link active" href="{% url 'home' %}">Inicio</a>
                   </div>
                 </div>
 
